@@ -1,26 +1,149 @@
 @import "tailwindcss";
 
+@theme {
+  /* Brand palette — Capital Energy Solutions */
+  --color-grid-black: #0d1b2a;
+  --color-grid-black-80: #0d1b2acc;
+  --color-grid-black-60: #0d1b2a99;
+  --color-charge-blue: #1fa2ff;
+  --color-charge-blue-600: #0d8fec;
+  --color-sky-current: #8fd3ff;
+  --color-energy-teal: #17c1b5;
+  --color-steel-slate: #4f6475;
+  --color-steel-slate-30: #4f64754d;
+  --color-soft-mint: #ddf8f4;
+  --color-signal-amber: #f5a623;
+  --color-clean-white: #ffffff;
+  --color-paper: #fafbfc;
+  --color-paper-2: #f3f5f7;
+  --color-hairline: #e6ebef;
+
+  --color-background: #ffffff;
+  --color-foreground: #0d1b2a;
+
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-display: var(--font-instrument-serif), "Times New Roman", serif;
+  --font-mono: ui-monospace, "SF Mono", Menlo, monospace;
+
+  --shadow-hairline: 0 0 0 1px rgb(13 27 42 / 0.06);
+  --shadow-soft: 0 1px 2px rgb(13 27 42 / 0.04), 0 8px 24px -12px rgb(13 27 42 / 0.12);
+  --shadow-lift: 0 2px 4px rgb(13 27 42 / 0.04), 0 24px 48px -20px rgb(13 27 42 / 0.18);
+
+  --radius-xs: 4px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-xl: 28px;
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  color-scheme: light;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-background);
+  color: var(--color-foreground);
+  font-family: var(--font-sans);
+  font-feature-settings: "ss01", "cv11", "kern";
+  letter-spacing: -0.005em;
+}
+
+::selection {
+  background: var(--color-grid-black);
+  color: var(--color-clean-white);
+}
+
+/* Editorial display headings */
+.display {
+  font-family: var(--font-display);
+  font-weight: 400;
+  letter-spacing: -0.035em;
+  line-height: 0.96;
+}
+
+.display em,
+.display i {
+  font-style: italic;
+  font-family: var(--font-display);
+}
+
+.overline {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+/* Subtle grid texture used on dark sections */
+.bg-grid {
+  background-image:
+    linear-gradient(to right, rgb(255 255 255 / 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(255 255 255 / 0.04) 1px, transparent 1px);
+  background-size: 56px 56px;
+}
+
+.bg-grid-light {
+  background-image:
+    linear-gradient(to right, rgb(13 27 42 / 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(13 27 42 / 0.04) 1px, transparent 1px);
+  background-size: 56px 56px;
+}
+
+/* Noise texture for depth */
+.bg-noise::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.035;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)' opacity='0.6'/></svg>");
+}
+
+/* Marquee animation */
+@keyframes marquee {
+  from { transform: translate3d(0, 0, 0); }
+  to { transform: translate3d(-50%, 0, 0); }
+}
+.marquee-track {
+  animation: marquee 40s linear infinite;
+}
+
+/* Ambient hero shimmer */
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.55; transform: scale(1); }
+  50% { opacity: 0.8; transform: scale(1.03); }
+}
+
+/* Focus rings — accessible without being loud */
+:where(a, button, input, textarea, select):focus-visible {
+  outline: 2px solid var(--color-charge-blue);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+/* Hairline utility */
+.hairline {
+  border-color: var(--color-hairline);
+}
+
+/* Prevent FOIT */
+.font-fallback {
+  font-family: ui-sans-serif, system-ui, sans-serif;
+}
+
+/* Reveal animation (used by motion components) */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
