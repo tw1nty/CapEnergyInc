@@ -64,7 +64,7 @@ export function Platform() {
                   unoptimized
                 />
                 <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(13,27,42,0.2),rgba(13,27,42,0.85))]" />
-                <div className="absolute inset-0 bg-grid opacity-30" />
+
 
                 {/* Diagram nodes */}
                 <DiagramNode className="absolute top-[14%] left-[10%]" label="Solar PV" sub="↗ generation" />

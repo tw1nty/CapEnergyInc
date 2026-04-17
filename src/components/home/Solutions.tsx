@@ -85,7 +85,7 @@ export function Solutions() {
 
   return (
     <section id="solutions" className="relative bg-[color:var(--color-grid-black)] text-white py-28 md:py-40">
-      <div className="absolute inset-0 bg-grid opacity-30" />
+
       <div className="pointer-events-none absolute top-[20%] left-[-10%] h-[500px] w-[500px] rounded-full bg-[color:var(--color-charge-blue)] opacity-10 blur-[140px]" />
 
       <div className="relative mx-auto max-w-[1400px] px-6 lg:px-10">

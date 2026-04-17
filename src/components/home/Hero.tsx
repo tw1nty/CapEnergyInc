@@ -33,7 +33,7 @@ export function Hero() {
       {/* Dark gradient overlay for type legibility */}
       <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_30%_20%,rgba(13,27,42,0.55),rgba(13,27,42,0.9))]" />
       <div className="absolute inset-0 -z-10 bg-gradient-to-b from-[color:var(--color-grid-black)]/60 via-[color:var(--color-grid-black)]/40 to-[color:var(--color-grid-black)]" />
-      <div className="absolute inset-0 -z-10 bg-grid opacity-60" />
+
       <div className="relative bg-noise" />
 
       {/* Ambient light orb */}

@@ -45,7 +45,7 @@ export function Partners() {
           unoptimized
         />
         <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(13,27,42,0.9),rgba(13,27,42,0.78)_40%,rgba(13,27,42,0.96))]" />
-        <div className="absolute inset-0 bg-grid opacity-40" />
+
       </div>
 
       <div className="mx-auto max-w-[1400px] px-6 lg:px-10 text-white">

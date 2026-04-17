@@ -27,7 +27,7 @@ const groups = [
 export function Footer() {
   return (
     <footer className="relative bg-[color:var(--color-grid-black)] text-white overflow-hidden">
-      <div className="absolute inset-0 bg-grid opacity-25" />
+
       <div className="pointer-events-none absolute -top-20 right-[-10%] h-[400px] w-[400px] rounded-full bg-[color:var(--color-charge-blue)] opacity-10 blur-[140px]" />
 
       <div className="relative mx-auto max-w-[1400px] px-6 lg:px-10 pt-28 pb-10">
