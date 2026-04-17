@@ -1,8 +1,10 @@
 "use client";
 
+import Image from "next/image";
 import { Reveal } from "@/components/ui/Reveal";
+import type { TeamMemberDisplay } from "@/lib/sanity/displayTypes";
 
-const team = [
+const fallbackTeam: TeamMemberDisplay[] = [
   {
     name: "Dino Rodwell",
     role: "Chief Executive Officer",
@@ -17,7 +19,14 @@ const team = [
   },
 ];
 
-export function About() {
+interface AboutProps {
+  team?: TeamMemberDisplay[];
+  missionStatement?: string | null;
+}
+
+export function About({ team, missionStatement }: AboutProps) {
+  const displayTeam = team ?? fallbackTeam;
+
   return (
     <section id="about" className="relative bg-[color:var(--color-paper)] py-28 md:py-40">
       <div className="mx-auto max-w-[1400px] px-6 lg:px-10">
@@ -36,19 +45,25 @@ export function About() {
               </h2>
             </Reveal>
             <Reveal delay={0.1}>
-              <div className="mt-10 grid gap-8 md:grid-cols-2">
-                <p className="text-[15px] leading-[1.65] text-[color:var(--color-steel-slate)]">
-                  Capital Energy Solutions helps commercial properties, multifamily
-                  sites, small businesses, and public‑facing locations deploy
-                  microgrids, energy management systems, and EV charging where it
-                  supports the broader energy plan.
+              {missionStatement ? (
+                <p className="mt-10 text-[15px] leading-[1.65] text-[color:var(--color-steel-slate)] max-w-[640px]">
+                  {missionStatement}
                 </p>
-                <p className="text-[15px] leading-[1.65] text-[color:var(--color-steel-slate)]">
-                  Our focus is systems that improve reliability, reduce operating
-                  costs, and prepare sites for the future — not promotional numbers,
-                  and not hardware deployed in a vacuum.
-                </p>
-              </div>
+              ) : (
+                <div className="mt-10 grid gap-8 md:grid-cols-2">
+                  <p className="text-[15px] leading-[1.65] text-[color:var(--color-steel-slate)]">
+                    Capital Energy Solutions helps commercial properties, multifamily
+                    sites, small businesses, and public‑facing locations deploy
+                    microgrids, energy management systems, and EV charging where it
+                    supports the broader energy plan.
+                  </p>
+                  <p className="text-[15px] leading-[1.65] text-[color:var(--color-steel-slate)]">
+                    Our focus is systems that improve reliability, reduce operating
+                    costs, and prepare sites for the future — not promotional numbers,
+                    and not hardware deployed in a vacuum.
+                  </p>
+                </div>
+              )}
             </Reveal>
           </div>
 
@@ -78,18 +93,29 @@ export function About() {
             </div>
           </Reveal>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            {team.map((p, i) => (
+            {displayTeam.map((p, i) => (
               <Reveal key={p.name} delay={i * 0.05}>
                 <div className="group relative overflow-hidden rounded-3xl border border-[color:var(--color-hairline)] bg-white p-8 md:p-10 transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_24px_60px_-30px_rgba(13,27,42,0.22)]">
-                  {/* Ambient glow on hover */}
                   <div className="pointer-events-none absolute -right-20 -top-20 h-60 w-60 rounded-full bg-[color:var(--color-charge-blue)]/0 blur-3xl transition-all duration-700 group-hover:bg-[color:var(--color-charge-blue)]/12" />
 
                   <div className="flex items-start justify-between gap-6">
-                    {/* Typographic "portrait" */}
-                    <div className="relative flex h-24 w-24 shrink-0 items-center justify-center rounded-2xl bg-[color:var(--color-grid-black)] text-white">
-                      <span className="display text-[44px] leading-none">{p.initials}</span>
-                      <span className="absolute bottom-2 right-2 h-1.5 w-1.5 rounded-full bg-[color:var(--color-energy-teal)]" />
-                    </div>
+                    {/* Portrait: Sanity photo or typographic fallback */}
+                    {p.photoUrl ? (
+                      <div className="relative h-24 w-24 shrink-0 overflow-hidden rounded-2xl">
+                        <Image
+                          src={p.photoUrl}
+                          alt={p.name}
+                          fill
+                          sizes="96px"
+                          className="object-cover"
+                        />
+                      </div>
+                    ) : (
+                      <div className="relative flex h-24 w-24 shrink-0 items-center justify-center rounded-2xl bg-[color:var(--color-grid-black)] text-white">
+                        <span className="display text-[44px] leading-none">{p.initials}</span>
+                        <span className="absolute bottom-2 right-2 h-1.5 w-1.5 rounded-full bg-[color:var(--color-energy-teal)]" />
+                      </div>
+                    )}
                     <div className="flex-1">
                       <div className="overline text-[color:var(--color-steel-slate)]">{p.role}</div>
                       <h3 className="display text-[36px] md:text-[44px] leading-[1.02] text-[color:var(--color-grid-black)] mt-3">
@@ -97,6 +123,12 @@ export function About() {
                       </h3>
                     </div>
                   </div>
+
+                  {p.bio && (
+                    <p className="mt-6 text-[14px] leading-[1.65] text-[color:var(--color-steel-slate)]">
+                      {p.bio}
+                    </p>
+                  )}
 
                   <div className="mt-10 border-t border-[color:var(--color-hairline)] pt-5 flex items-center justify-between">
                     <p className="text-[13px] text-[color:var(--color-steel-slate)] max-w-[60%]">{p.focus}</p>

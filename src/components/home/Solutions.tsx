@@ -5,18 +5,9 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Reveal } from "@/components/ui/Reveal";
 import { cn } from "@/lib/cn";
+import type { SolutionItem } from "@/lib/sanity/displayTypes";
 
-type Solution = {
-  id: string;
-  label: string;
-  title: string;
-  summary: string;
-  bullets: string[];
-  img: string;
-  credit: string;
-};
-
-const solutions: Solution[] = [
+const fallbackSolutions: SolutionItem[] = [
   {
     id: "commercial",
     label: "Commercial & Retail",
@@ -79,9 +70,14 @@ const solutions: Solution[] = [
   },
 ];
 
-export function Solutions() {
-  const [active, setActive] = useState(solutions[0].id);
-  const current = solutions.find((s) => s.id === active)!;
+interface SolutionsProps {
+  solutions?: SolutionItem[];
+}
+
+export function Solutions({ solutions }: SolutionsProps) {
+  const items = solutions ?? fallbackSolutions;
+  const [active, setActive] = useState(items[0].id);
+  const current = items.find((s) => s.id === active) ?? items[0];
 
   return (
     <section id="solutions" className="relative bg-[color:var(--color-grid-black)] text-white py-28 md:py-40">
@@ -116,7 +112,7 @@ export function Solutions() {
           {/* Tabs */}
           <div className="lg:col-span-4">
             <div className="flex flex-col border-t border-white/10">
-              {solutions.map((s) => {
+              {items.map((s) => {
                 const isActive = s.id === active;
                 return (
                   <button
