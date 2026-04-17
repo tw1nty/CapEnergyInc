@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import { Button } from "@/components/ui/Button";
@@ -12,6 +13,7 @@ export function Hero() {
   });
   const y = useTransform(scrollYProgress, [0, 1], ["0%", "20%"]);
   const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
+  const earthY = useTransform(scrollYProgress, [0, 1], ["0%", "12%"]);
 
   return (
     <section ref={ref} className="relative isolate min-h-[100svh] w-full overflow-hidden bg-[color:var(--color-grid-black)] text-white">
@@ -45,42 +47,65 @@ export function Hero() {
         style={{ opacity }}
         className="relative mx-auto flex min-h-[100svh] max-w-[1400px] flex-col px-6 pt-20 pb-14 lg:px-10 lg:pt-24"
       >
-        <div className="flex flex-col gap-10 lg:max-w-[980px] my-auto">
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.35, ease: [0.22, 1, 0.36, 1] }}
-            className="display text-[56px] leading-[0.95] tracking-[-0.035em] sm:text-[84px] md:text-[108px] lg:text-[132px]"
-          >
-            Microgrids
-            <br />
-            for the{" "}
-            <em className="italic text-[color:var(--color-sky-current)]">real</em> world.
-          </motion.h1>
+        <div className="grid lg:grid-cols-2 lg:gap-10 items-center my-auto">
+          {/* Left: text */}
+          <div className="flex flex-col gap-10">
+            <motion.h1
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1, delay: 0.35, ease: [0.22, 1, 0.36, 1] }}
+              className="display text-[56px] leading-[0.95] tracking-[-0.035em] sm:text-[84px] md:text-[108px] lg:text-[100px] xl:text-[120px]"
+            >
+              Microgrids
+              <br />
+              for the{" "}
+              <em className="italic text-[color:var(--color-sky-current)]">real</em> world.
+            </motion.h1>
 
-          <motion.p
-            initial={{ opacity: 0, y: 14 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.55, ease: [0.22, 1, 0.36, 1] }}
-            className="max-w-[620px] text-[17px] leading-[1.55] text-white/75 md:text-[19px]"
-          >
-            We develop resilient, site‑level energy infrastructure — solar, battery
-            storage, intelligent controls, and EV charging — for commercial properties,
-            multifamily, small business, and public charging sites.
-          </motion.p>
+            <motion.p
+              initial={{ opacity: 0, y: 14 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.55, ease: [0.22, 1, 0.36, 1] }}
+              className="max-w-[540px] text-[17px] leading-[1.55] text-white/75 md:text-[19px]"
+            >
+              We develop resilient, site‑level energy infrastructure — solar, battery
+              storage, intelligent controls, and EV charging — for commercial properties,
+              multifamily, small business, and public charging sites.
+            </motion.p>
 
+            <motion.div
+              initial={{ opacity: 0, y: 14 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.7, ease: [0.22, 1, 0.36, 1] }}
+              className="flex flex-wrap items-center gap-3"
+            >
+              <Button href="#contact" variant="primary">
+                Request a microgrid assessment
+              </Button>
+              <Button href="#microgrids" variant="light" arrow>
+                How we build
+              </Button>
+            </motion.div>
+          </div>
+
+          {/* Right: earth image — desktop only */}
           <motion.div
-            initial={{ opacity: 0, y: 14 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.7, ease: [0.22, 1, 0.36, 1] }}
-            className="flex flex-wrap items-center gap-3"
+            initial={{ opacity: 0, scale: 0.96 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1.2, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
+            style={{ y: earthY }}
+            className="hidden lg:flex items-center justify-center"
           >
-            <Button href="#contact" variant="primary">
-              Request a microgrid assessment
-            </Button>
-            <Button href="#microgrids" variant="light" arrow>
-              How we build
-            </Button>
+            <div className="relative w-full max-w-[580px] aspect-square">
+              <Image
+                src="/earth-hero-right.png"
+                alt=""
+                fill
+                sizes="580px"
+                className="object-contain mix-blend-screen"
+                priority
+              />
+            </div>
           </motion.div>
         </div>
 
