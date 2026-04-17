@@ -20,8 +20,8 @@ const fallbackSolutions: SolutionItem[] = [
       "Peak shaving & demand response",
       "Fleet or public EV charging layer",
     ],
-    img: "https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?auto=format&fit=crop&w=1600&q=80",
-    credit: "Commercial rooftop solar · Unsplash",
+    img: "https://images.unsplash.com/photo-1721816436045-b1e437357de5?auto=format&fit=crop&w=1600&q=80",
+    credit: "EV charging at retail · Unsplash",
   },
   {
     id: "multifamily",
@@ -171,10 +171,6 @@ export function Solutions({ solutions }: SolutionsProps) {
                     unoptimized
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[color:var(--color-grid-black)]/60 via-transparent to-transparent" />
-                  <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between text-[11px] tracking-[0.14em] uppercase text-white/60">
-                    <span>{current.label}</span>
-                    <span className="opacity-70">{current.credit}</span>
-                  </div>
                 </div>
 
                 <div className="md:col-span-2 flex flex-col">
