@@ -46,21 +46,6 @@ export function Hero() {
         className="relative mx-auto flex min-h-[100svh] max-w-[1400px] flex-col justify-between px-6 pt-40 pb-14 lg:px-10 lg:pt-44"
       >
         <div className="flex flex-col gap-10 lg:max-w-[980px]">
-          <motion.div
-            initial={{ opacity: 0, y: 14 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-            className="inline-flex items-center gap-2.5 self-start rounded-full border border-white/15 bg-white/5 px-3.5 py-1.5 backdrop-blur-md"
-          >
-            <span className="relative flex h-1.5 w-1.5">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[color:var(--color-energy-teal)] opacity-70" />
-              <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-[color:var(--color-energy-teal)]" />
-            </span>
-            <span className="text-[11px] tracking-[0.16em] uppercase text-white/80">
-              Microgrid-first energy infrastructure
-            </span>
-          </motion.div>
-
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
