@@ -54,7 +54,7 @@ export function Partners() {
           <div className="lg:col-span-7">
             <Reveal>
               <div className="overline text-[color:var(--color-sky-current)] mb-5">
-                <span className="mr-2">◆</span> Partner program
+                 Partner program
               </div>
             </Reveal>
             <Reveal delay={0.05}>

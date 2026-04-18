@@ -35,7 +35,7 @@ export function About({ team, missionStatement }: AboutProps) {
           <div className="lg:col-span-7">
             <Reveal>
               <div className="overline text-[color:var(--color-energy-teal)] mb-5">
-                <span className="mr-2">◆</span> About · Mission
+                 About · Mission
               </div>
             </Reveal>
             <Reveal delay={0.05}>

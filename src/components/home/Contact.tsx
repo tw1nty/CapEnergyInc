@@ -35,7 +35,7 @@ export function Contact() {
           <div className="lg:col-span-5">
             <Reveal>
               <div className="overline text-[color:var(--color-charge-blue)] mb-5">
-                <span className="mr-2">◆</span> Start a project
+                 Start a project
               </div>
             </Reveal>
             <Reveal delay={0.05}>

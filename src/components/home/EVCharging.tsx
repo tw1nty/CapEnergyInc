@@ -47,7 +47,7 @@ export function EVCharging() {
           <div className="lg:col-span-6 lg:pt-6">
             <Reveal>
               <div className="overline text-[color:var(--color-charge-blue)] mb-5">
-                <span className="mr-2">◆</span> EV charging solutions
+                 EV charging solutions
               </div>
             </Reveal>
             <Reveal delay={0.05}>

@@ -90,7 +90,7 @@ export function Solutions({ solutions }: SolutionsProps) {
           <div className="max-w-[720px]">
             <Reveal>
               <div className="overline text-[color:var(--color-sky-current)] mb-5">
-                <span className="mr-2">◆</span> Solutions by site type
+                 Solutions by site type
               </div>
             </Reveal>
             <Reveal delay={0.05}>

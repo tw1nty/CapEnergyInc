@@ -44,7 +44,7 @@ export function WhyMicrogrids() {
           <div className="lg:col-span-5 lg:sticky lg:top-28 lg:self-start">
             <Reveal>
               <div className="overline text-[color:var(--color-energy-teal)] mb-5">
-                <span className="mr-2">◆</span> Why microgrids
+                 Why microgrids
               </div>
             </Reveal>
             <Reveal delay={0.05}>

@@ -20,7 +20,7 @@ export function Platform() {
           <div className="lg:col-span-5">
             <Reveal>
               <div className="overline text-[color:var(--color-energy-teal)] mb-5">
-                <span className="mr-2">◆</span> One integrated platform
+                 One integrated platform
               </div>
             </Reveal>
             <Reveal delay={0.05}>
