@@ -37,12 +37,12 @@ export function Partners() {
       {/* Background image w/ gradient */}
       <div className="absolute inset-0 -z-10">
         <Image
-          src="https://images.unsplash.com/photo-1509391366360-2e959784a276?auto=format&fit=crop&w=2000&q=80"
+          src="/microgrid-valley.png"
           alt=""
           fill
           sizes="100vw"
           className="object-cover"
-          unoptimized
+          priority
         />
         <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(13,27,42,0.9),rgba(13,27,42,0.78)_40%,rgba(13,27,42,0.96))]" />
 
