@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { Logo } from "@/components/ui/Logo";
 
@@ -26,7 +27,20 @@ const groups = [
 
 export function Footer() {
   return (
-    <footer className="relative bg-[color:var(--color-grid-black)] text-white overflow-hidden">
+    <footer className="relative text-white overflow-hidden">
+
+      {/* Background image */}
+      <div className="absolute inset-0 -z-10">
+        <Image
+          src="/footer-bg.png"
+          alt=""
+          fill
+          sizes="100vw"
+          className="object-cover object-top"
+          priority
+        />
+        <div className="absolute inset-0 bg-[color:var(--color-grid-black)]/45" />
+      </div>
 
       <div className="pointer-events-none absolute -top-20 right-[-10%] h-[400px] w-[400px] rounded-full bg-[color:var(--color-charge-blue)] opacity-10 blur-[140px]" />
 
