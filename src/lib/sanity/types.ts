@@ -5,13 +5,41 @@ export type SanityImage = {
 };
 
 export type SiteSettings = {
+  // General
   companyName: string;
-  tagline?: string;
-  heroSubcopy?: string;
   phone: string;
   email: string;
   hours?: string;
+
+  // Hero
+  heroHeadline?: string;
+  heroBody?: string;
+
+  // Why Microgrids
+  whyHeading?: string;
+  whyIntro?: string;
+  whyPillars?: { title: string; body: string }[];
+
+  // Platform
+  platformHeading?: string;
+  platformIntro?: string;
+  platformStack?: { label: string; desc: string }[];
+
+  // EV Charging
+  evHeading?: string;
+  evBody?: string;
+  evLayers?: { label: string; value: string }[];
+
+  // Partners
+  partnersHeading?: string;
+  partnersIntro?: string;
+  partnersSteps?: { title: string; body: string }[];
+  partnersSegments?: string[];
+
+  // About
   missionStatement?: string;
+
+  // SEO
   seo?: {
     metaTitle?: string;
     metaDescription?: string;

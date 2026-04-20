@@ -4,14 +4,24 @@ import Image from "next/image";
 import { Reveal } from "@/components/ui/Reveal";
 import { Button } from "@/components/ui/Button";
 
-const layers = [
-  { n: "01", label: "Generation", value: "Solar PV + interconnection" },
-  { n: "02", label: "Storage", value: "Battery capacity sized to load" },
-  { n: "03", label: "Controls", value: "Site energy management" },
-  { n: "04", label: "Delivery", value: "Level‑2 & DC fast charging" },
+const fallbackLayers = [
+  { label: "Generation", value: "Solar PV + interconnection" },
+  { label: "Storage", value: "Battery capacity sized to load" },
+  { label: "Controls", value: "Site energy management" },
+  { label: "Delivery", value: "Level‑2 & DC fast charging" },
 ];
 
-export function EVCharging() {
+interface EVChargingProps {
+  heading?: string;
+  body?: string;
+  layers?: { label: string; value: string }[];
+}
+
+export function EVCharging({ heading, body, layers }: EVChargingProps) {
+  const displayLayers = (layers && layers.length > 0 ? layers : fallbackLayers).map((l, i) => ({
+    ...l,
+    n: String(i + 1).padStart(2, "0"),
+  }));
   return (
     <section id="ev-charging" className="relative bg-white py-28 md:py-40">
       <div className="mx-auto max-w-[1400px] px-6 lg:px-10">
@@ -52,22 +62,19 @@ export function EVCharging() {
             </Reveal>
             <Reveal delay={0.05}>
               <h2 className="display text-[44px] sm:text-[56px] md:text-[68px] lg:text-[76px] text-[color:var(--color-grid-black)]">
-                Charging, <em className="italic text-[color:var(--color-charge-blue)]">inside</em> the energy plan.
+                {heading ?? <>Charging, <em className="italic text-[color:var(--color-charge-blue)]">inside</em> the energy plan.</>}
               </h2>
             </Reveal>
             <Reveal delay={0.1}>
               <p className="mt-7 max-w-[540px] text-[16px] leading-[1.6] text-[color:var(--color-steel-slate)]">
-                EV charging is an operating layer on top of a well‑designed microgrid.
-                When generation, storage, and controls are already on site, chargers cost
-                less to run, install faster, and don&rsquo;t blow past the utility&rsquo;s
-                service limit.
+                {body ?? "EV charging is an operating layer on top of a well‑designed microgrid. When generation, storage, and controls are already on site, chargers cost less to run, install faster, and don't blow past the utility's service limit."}
               </p>
             </Reveal>
 
             <Reveal delay={0.15}>
               <ul className="mt-10 grid grid-cols-2 gap-px bg-[color:var(--color-hairline)] border border-[color:var(--color-hairline)] rounded-2xl overflow-hidden">
-                {layers.map((l) => (
-                  <li key={l.n} className="bg-white p-5">
+                {displayLayers.map((l) => (
+                  <li key={l.label} className="bg-white p-5">
                     <div className="flex items-baseline justify-between">
                       <span className="text-[11px] font-mono tracking-widest text-[color:var(--color-steel-slate)]/60">{l.n}</span>
                       <span className="overline text-[color:var(--color-steel-slate)]">{l.label}</span>

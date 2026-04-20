@@ -15,7 +15,8 @@ const links = [
   { href: "#about", label: "About" },
 ];
 
-export function Navigation() {
+export function Navigation({ phone }: { phone?: string }) {
+  const displayPhone = phone ?? "(888) 509-1506";
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
 
@@ -82,7 +83,7 @@ export function Navigation() {
                   strokeLinejoin="round"
                 />
               </svg>
-              (888) 509-1506
+              {displayPhone}
             </a>
             {/* CTA hidden on mobile — accessible via hamburger menu */}
             <span className="hidden sm:block">
@@ -147,10 +148,10 @@ export function Navigation() {
                 Request a site review
               </Link>
               <a
-                href="tel:+18885091506"
+                href={`tel:${displayPhone.replace(/\D/g, "")}`}
                 className="px-4 py-3 text-[14px] text-[color:var(--color-steel-slate)]"
               >
-                (888) 509-1506
+                {displayPhone}
               </a>
             </nav>
           </motion.div>

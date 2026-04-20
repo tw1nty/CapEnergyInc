@@ -3,15 +3,22 @@
 import Image from "next/image";
 import { Reveal } from "@/components/ui/Reveal";
 
-const stack = [
-  { k: "Solar PV", desc: "Rooftop, carport, or ground‑mount — sized to the load." },
-  { k: "Battery storage", desc: "Behind‑the‑meter capacity for backup and peak shaving." },
-  { k: "Site controls", desc: "Real‑time orchestration of generation, storage, and loads." },
-  { k: "EV charging", desc: "Level‑2 and DC fast charging — integrated, not bolted on." },
-  { k: "Utility interface", desc: "Tariff, interconnection, and demand‑response management." },
+const fallbackStack = [
+  { label: "Solar PV", desc: "Rooftop, carport, or ground‑mount — sized to the load." },
+  { label: "Battery storage", desc: "Behind‑the‑meter capacity for backup and peak shaving." },
+  { label: "Site controls", desc: "Real‑time orchestration of generation, storage, and loads." },
+  { label: "EV charging", desc: "Level‑2 and DC fast charging — integrated, not bolted on." },
+  { label: "Utility interface", desc: "Tariff, interconnection, and demand‑response management." },
 ];
 
-export function Platform() {
+interface PlatformProps {
+  heading?: string;
+  intro?: string;
+  stack?: { label: string; desc: string }[];
+}
+
+export function Platform({ heading, intro, stack }: PlatformProps) {
+  const displayStack = (stack && stack.length > 0 ? stack : fallbackStack);
   return (
     <section className="relative bg-white py-28 md:py-36 overflow-hidden">
       <div className="mx-auto max-w-[1400px] px-6 lg:px-10">
@@ -25,25 +32,23 @@ export function Platform() {
             </Reveal>
             <Reveal delay={0.05}>
               <h2 className="display text-[40px] sm:text-[52px] md:text-[60px] lg:text-[68px] text-[color:var(--color-grid-black)]">
-                Every layer talks to every <em className="italic">other</em> layer.
+                {heading ?? <>Every layer talks to every <em className="italic">other</em> layer.</>}
               </h2>
             </Reveal>
             <Reveal delay={0.1}>
               <p className="mt-7 text-[15px] leading-[1.65] text-[color:var(--color-steel-slate)] max-w-[440px]">
-                Most sites end up with a stack of disconnected vendors. CES designs a
-                single system where each layer is aware of the others — so the whole
-                site behaves like one asset.
+                {intro ?? "Most sites end up with a stack of disconnected vendors. CES designs a single system where each layer is aware of the others — so the whole site behaves like one asset."}
               </p>
             </Reveal>
 
             <ul className="mt-10 divide-y divide-[color:var(--color-hairline)] border-y border-[color:var(--color-hairline)]">
-              {stack.map((s, i) => (
-                <Reveal as="li" key={s.k} delay={i * 0.04} className="group flex items-start gap-5 py-4">
+              {displayStack.map((s, i) => (
+                <Reveal as="li" key={s.label} delay={i * 0.04} className="group flex items-start gap-5 py-4">
                   <span className="font-mono text-[11px] tracking-widest text-[color:var(--color-steel-slate)]/60 pt-1">
                     0{i + 1}
                   </span>
                   <div className="flex-1">
-                    <div className="text-[16px] font-medium text-[color:var(--color-grid-black)]">{s.k}</div>
+                    <div className="text-[16px] font-medium text-[color:var(--color-grid-black)]">{s.label}</div>
                     <div className="text-[13px] text-[color:var(--color-steel-slate)] mt-1">{s.desc}</div>
                   </div>
                 </Reveal>

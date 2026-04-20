@@ -12,8 +12,15 @@ async function safeFetch<T>(query: string): Promise<T | null> {
 export async function getSiteSettings(): Promise<SiteSettings | null> {
   return safeFetch<SiteSettings>(
     `*[_type == "siteSettings"][0]{
-      companyName, tagline, heroSubcopy,
-      phone, email, hours, missionStatement,
+      companyName, phone, email, hours,
+      heroHeadline, heroBody,
+      whyHeading, whyIntro, whyPillars[] { title, body },
+      platformHeading, platformIntro, platformStack[] { label, desc },
+      evHeading, evBody, evLayers[] { label, value },
+      partnersHeading, partnersIntro,
+      partnersSteps[] { title, body },
+      partnersSegments,
+      missionStatement,
       seo { metaTitle, metaDescription, ogImage }
     }`
   );

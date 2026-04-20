@@ -5,7 +5,9 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import { Button } from "@/components/ui/Button";
 
-export function Hero() {
+export function Hero({ headline, body }: { headline?: string; body?: string }) {
+  const displayHeadline = headline ?? "Microgrids\nfor the real world.";
+  const displayBody = body ?? "We develop resilient, site‑level energy infrastructure — solar, battery storage, intelligent controls, and EV charging — for commercial properties, multifamily, small business, and public charging sites.";
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -56,10 +58,9 @@ export function Hero() {
               transition={{ duration: 1, delay: 0.35, ease: [0.22, 1, 0.36, 1] }}
               className="display text-[56px] leading-[0.95] tracking-[-0.035em] sm:text-[84px] md:text-[108px] lg:text-[100px] xl:text-[120px]"
             >
-              Microgrids
-              <br />
-              for the{" "}
-              <em className="italic text-[color:var(--color-sky-current)]">real</em> world.
+              {displayHeadline.split("\n").map((line, i) => (
+                <span key={i}>{i > 0 && <br />}{line}</span>
+              ))}
             </motion.h1>
 
             <motion.p
@@ -68,9 +69,7 @@ export function Hero() {
               transition={{ duration: 0.8, delay: 0.55, ease: [0.22, 1, 0.36, 1] }}
               className="max-w-[540px] text-[17px] leading-[1.55] text-white/75 md:text-[19px]"
             >
-              We develop resilient, site‑level energy infrastructure — solar, battery
-              storage, intelligent controls, and EV charging — for commercial properties,
-              multifamily, small business, and public charging sites.
+              {displayBody}
             </motion.p>
 
             <motion.div

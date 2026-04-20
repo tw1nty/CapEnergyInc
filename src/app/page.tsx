@@ -46,16 +46,43 @@ export default async function Home() {
 
   return (
     <div className="overflow-x-hidden">
-      <Navigation />
+      <Navigation phone={settings?.phone} />
       <main className="flex-1">
-        <Hero />
-        <WhyMicrogrids />
-        <Platform />
+        <Hero
+          headline={settings?.heroHeadline}
+          body={settings?.heroBody}
+        />
+        <WhyMicrogrids
+          heading={settings?.whyHeading}
+          intro={settings?.whyIntro}
+          pillars={settings?.whyPillars}
+        />
+        <Platform
+          heading={settings?.platformHeading}
+          intro={settings?.platformIntro}
+          stack={settings?.platformStack}
+        />
         <Solutions solutions={solutionProps} />
-        <EVCharging />
-        <Partners />
-        <About team={teamProps} missionStatement={settings?.missionStatement} />
-        <Contact />
+        <EVCharging
+          heading={settings?.evHeading}
+          body={settings?.evBody}
+          layers={settings?.evLayers}
+        />
+        <Partners
+          heading={settings?.partnersHeading}
+          intro={settings?.partnersIntro}
+          steps={settings?.partnersSteps}
+          segments={settings?.partnersSegments}
+        />
+        <About
+          team={teamProps}
+          missionStatement={settings?.missionStatement}
+        />
+        <Contact
+          phone={settings?.phone}
+          email={settings?.email}
+          hours={settings?.hours}
+        />
       </main>
       <Footer />
     </div>

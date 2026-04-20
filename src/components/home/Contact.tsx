@@ -24,7 +24,16 @@ const inquiryTypes = [
   { v: "general", l: "General question" },
 ];
 
-export function Contact() {
+interface ContactProps {
+  phone?: string;
+  email?: string;
+  hours?: string;
+}
+
+export function Contact({ phone, email, hours }: ContactProps) {
+  const displayPhone = phone ?? "(888) 509-1506";
+  const displayEmail = email ?? "info@capenergyinc.com";
+  const displayHours = hours ?? "Mon–Fri · 8:30a–6p ET";
   const [state, formAction, pending] = useActionState(submitContact, initial);
 
   return (
@@ -53,15 +62,15 @@ export function Contact() {
             <div className="mt-12 grid gap-4 max-w-[420px]">
               <ContactLine
                 label="Email"
-                value="info@capenergyinc.com"
-                href="mailto:info@capenergyinc.com"
+                value={displayEmail}
+                href={`mailto:${displayEmail}`}
               />
               <ContactLine
                 label="Phone"
-                value="(888) 509-1506"
-                href="tel:+18885091506"
+                value={displayPhone}
+                href={`tel:${displayPhone.replace(/\D/g, "")}`}
               />
-              <ContactLine label="Hours" value="Mon–Fri · 8:30a–6p ET" />
+              <ContactLine label="Hours" value={displayHours} />
             </div>
           </div>
 
