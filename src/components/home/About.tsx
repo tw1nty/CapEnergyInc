@@ -83,8 +83,8 @@ export function About({ team, missionStatement }: AboutProps) {
           </div>
         </div>
 
-        {/* Leadership */}
-        <div className="mt-28">
+        {/* Leadership — hidden until ready, remove "hidden" class to restore */}
+        <div className="hidden mt-28">
           <Reveal>
             <div className="flex items-end justify-between mb-10">
               <div className="overline text-[color:var(--color-steel-slate)]">Leadership</div>
